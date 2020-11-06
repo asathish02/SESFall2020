@@ -1,18 +1,25 @@
+<!--This html file is for the technology tab of the website-->
 <!doctype html>
 <html lang="en">
 <head>
-    <link rel="icon"
-          href="https://play-lh.googleusercontent.com/ICqfwusOjfw2wPAusH5PR8O_3DcmVUMBaOnxjg0JdPmKO5rFX0y5gWk7qwvOQwozcyI">
+
+    <!--Addition of Capital One Favicon through URL-->
+    <link href="https://play-lh.googleusercontent.com/ICqfwusOjfw2wPAusH5PR8O_3DcmVUMBaOnxjg0JdPmKO5rFX0y5gWk7qwvOQwozcyI"
+          rel="icon">
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=yes" name="viewport">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- Bootstrap CSS Style Sheet -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" rel="stylesheet">
 
+    <!--Name for Tab of the Website-->
     <title>CapOneSESSummit_Sathish</title>
 </head>
+
+<!--Styling-->
 <style>
   div {
   padding: 0px 60px 0px;
@@ -26,18 +33,21 @@
     max-width: 100%
 }
 
-
-
 </style>
-<body style="background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAACICAMAAADNhJDwAAAAA1BMVEXT09OdeqMBAAAASElEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA3A8UYAAEH59SKAAAAAElFTkSuQmCC');"
-      ; height=100%>
+
+<!--Grey Background Choice-->
+<body ;
+      height=100% style="background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAACICAMAAADNhJDwAAAAA1BMVEXT09OdeqMBAAAASElEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA3A8UYAAEH59SKAAAAAElFTkSuQmCC');">
+
+<!--Nav Bar implementation pulled and edited from Bootstrap-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/"><b><font size="10"><font face="Brush Script MT">The Sathish Times</font></font></b></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
         <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!--Different tabs of the navbar resulting in different sections of the website-->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
@@ -55,21 +65,27 @@
                     Articles</font></a>
             </li>
         </ul>
-        <form action="/techsearchresults" method = "POST">
+
+        <!--Search functionality of the technology tab that redirects to a landing page-->
+        <form action="/techsearchresults" method="POST">
             {% csrf_token %}
-            <input type="text" name="mytextbox" size="20"/>
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" value="Click" name="mybtn" >Search</button>
+            <input name="mytextbox" size="20" type="text"/>
+            <button class="btn btn-outline-primary my-2 my-sm-0" name="mybtn" type="submit" value="Click">Search
+            </button>
         </form>
     </div>
 </nav>
 
+<!--Parsing the different sections of all articles and displaying them in card format via NewsAPI-->
+<!--Small edits made to display certain sections correctly with truncation/slicing-->
+<!--Button implemented to redirect to article URL-->
 <div class=container">
     <div class="row">'
         {% for x in api.articles %}
         <div class="col-sm">
             <div class="card h-100 mt-3 mb-3" style="width: 50rem;">
-                <img src="{{x.urlToImage}}" height="400" class="card-img-top"
-                     onerror="this.onerror=null;this.src='https://www.ontariosystems.com/wp-content/uploads/2018/08/twitter_AI-in-Receivables.jpg';"/>
+                <img class="card-img-top" height="400" onerror="this.onerror=null;this.src='https://www.ontariosystems.com/wp-content/uploads/2018/08/twitter_AI-in-Receivables.jpg';"
+                     src="{{x.urlToImage}}"/>
                 <div class="card-body">
                     <h5 class="card-title">{{x.title}}</h5>
                     <p class="card-text"><b>Date Published: </b>{{x.publishedAt|slice:":10"}}</p>
@@ -79,7 +95,8 @@
                     {% else %}
                     <p class="card-text"><b>Description: </b>None</p>
                     {% endif %}
-                    <center><a href="{{x.url}}" target="_blank" class="btn btn-primary">Click here to read more!</a></center>
+                    <center><a class="btn btn-primary" href="{{x.url}}" target="_blank">Click here to read more!</a>
+                    </center>
                 </div>
             </div>
         </div>
@@ -87,11 +104,12 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+<!--Script source, integrity, and cross-origins-->
+<script crossorigin="anonymous"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script crossorigin="anonymous"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-        crossorigin="anonymous"></script>
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
